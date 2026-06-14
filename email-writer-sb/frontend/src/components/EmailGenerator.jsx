@@ -18,7 +18,7 @@ function EmailGenerator() {
 
     try {
       const response = await axios.post(
-  "https://ai-email-assistant-mjac.onrender.com/api/email/generate",
+  `${import.meta.env.VITE_API_URL}/api/email/generate`,
   {
     emailContent,
     tone,
