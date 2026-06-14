@@ -3,11 +3,11 @@ import axios from "axios";
 
 function EmailGenerator() {
   const [emailContent, setEmailContent] = useState("");
-  const [tone, setTone] = useState("friendly");
+  const [tone, setTone] = useState("professional");
   const [generatedReply, setGeneratedReply] = useState("");
   const [loading, setLoading] = useState(false);
   const [copied, setCopied] = useState(false);
-console.log("API URL =", import.meta.env.VITE_API_URL);
+
   const generateReply = async () => {
     if (!emailContent.trim()) {
       alert("Please enter email content");
@@ -18,12 +18,12 @@ console.log("API URL =", import.meta.env.VITE_API_URL);
 
     try {
       const response = await axios.post(
-  `${import.meta.env.VITE_API_URL}/api/email/generate`,
-  {
-    emailContent,
-    tone,
-  }
-);
+        `${import.meta.env.VITE_API_URL}/api/email/generate`,
+        {
+          emailContent,
+          tone,
+        }
+      );
 
       setGeneratedReply(response.data);
     } catch (error) {
@@ -49,11 +49,11 @@ console.log("API URL =", import.meta.env.VITE_API_URL);
   return (
     <div className="container">
       <div className="card">
-        <h1>📧 Smart Email Assistant</h1>
 
-        <p className="subtitle">
-          Generate professional email replies instantly using AI
-        </p>
+        <div className="header">
+          <div className="logo">📧</div>
+          <h1>Smart Email Assistant</h1>
+        </div>
 
         <label>Original Email</label>
 
@@ -78,12 +78,15 @@ console.log("API URL =", import.meta.env.VITE_API_URL);
             onClick={generateReply}
             disabled={loading}
           >
-            {loading ? "⏳ Generating..." : "Generate Reply"}
+            {loading
+              ? "Generating Reply..."
+              : "✨ Generate Reply"}
           </button>
         </div>
 
         {generatedReply && (
           <div className="result">
+
             <h2>Generated Reply</h2>
 
             <textarea
@@ -92,7 +95,7 @@ console.log("API URL =", import.meta.env.VITE_API_URL);
             />
 
             <button onClick={copyToClipboard}>
-              Copy Reply
+              📋 Copy Reply
             </button>
 
             {copied && (
@@ -102,6 +105,11 @@ console.log("API URL =", import.meta.env.VITE_API_URL);
             )}
           </div>
         )}
+
+        <p className="footer">
+          Built with React, Spring Boot & Gemini AI
+        </p>
+
       </div>
     </div>
   );
