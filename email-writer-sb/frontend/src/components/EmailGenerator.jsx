@@ -18,12 +18,12 @@ function EmailGenerator() {
 
     try {
       const response = await axios.post(
-        "http://localhost:8081/api/email/generate",
-        {
-          emailContent,
-          tone,
-        }
-      );
+  "https://ai-email-assistant-mjac.onrender.com/api/email/generate",
+  {
+    emailContent,
+    tone,
+  }
+);
 
       setGeneratedReply(response.data);
     } catch (error) {
