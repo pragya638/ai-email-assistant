@@ -7,7 +7,7 @@ function EmailGenerator() {
   const [generatedReply, setGeneratedReply] = useState("");
   const [loading, setLoading] = useState(false);
   const [copied, setCopied] = useState(false);
-
+console.log("API URL =", import.meta.env.VITE_API_URL);
   const generateReply = async () => {
     if (!emailContent.trim()) {
       alert("Please enter email content");
